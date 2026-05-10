@@ -1,6 +1,7 @@
+using System.Collections.Generic;
 using UnityEngine;
 
-public class ChunkMover
+public class ChunkMover : IChunkMover
 {
     private InputSystem _inputSystem;
     private Transform _chunkManagerTransform;
@@ -18,6 +19,16 @@ public class ChunkMover
     // Переменные для движения по X
     private float _targetLateralPosition = 0f; // Целевая позиция по X (-1, 0, 1)
     private float _currentLateralPosition = 0f; // Текущая позиция по X
+    
+    public void MoveForward(List<Transform> chunks, float speed)
+    {
+        float moveDistance = speed * Time.deltaTime;
+        Vector3 moveOffset = new Vector3(0, 0, -moveDistance);
+        foreach (var activeChunk in chunks)
+        {
+            activeChunk.transform.position += moveOffset;
+        }
+    }
     
     public void HandleLateralInput()
     {
