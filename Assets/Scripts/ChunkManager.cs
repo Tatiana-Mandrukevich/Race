@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Zenject;
 using Random = UnityEngine.Random;
 
 public class ChunkManager : MonoBehaviour
@@ -17,20 +18,16 @@ public class ChunkManager : MonoBehaviour
 
     public float recycleDistanceBehindCamera = 15;
 
-    // Input System параметры
-    public float LateralMoveSpeed = 5f; // Скорость плавного движения по X
-    public float LateralInputSpeed = 2f; // Скорость изменения целевой позиции при зажатии клавиши
-
     private List<GameObject> _lastChunks = new List<GameObject>();
     private List<Transform> _activeChunks = new List<Transform>();
     private float _currentSpeed = 0;
-    
-    // Переменные для движения по X
-    private float _targetLateralPosition = 0f; // Целевая позиция по X (-1, 0, 1)
-    private float _currentLateralPosition = 0f; // Текущая позиция по X
+    private ChunkMover _chunkMover;
+    [Inject] private InputSystem _inputSystem;
 
     private void Awake()
     {
+        _chunkMover = new ChunkMover(transform, _inputSystem);
+        
         SpawnInitialChunks();
     }
 
@@ -40,8 +37,8 @@ public class ChunkManager : MonoBehaviour
         MoveBlocks(_currentSpeed);
         RecycleBlockPassedCamera();
         
-        HandleLateralInput();
-        UpdateLateralPosition();
+        _chunkMover.HandleLateralInput();
+        _chunkMover.UpdateLateralPosition();
     }
 
     private void RecalculateSpeed()
@@ -149,38 +146,5 @@ public class ChunkManager : MonoBehaviour
         newChunk.transform.position = spawnPosition;
         newChunk.transform.SetParent(transform);
         return newChunk.transform;
-    }
-
-    private void HandleLateralInput()
-    {
-        // Проверка зажатия клавиш A или левой стрелки (инвертировано - едет вправо)
-        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
-        {
-            _targetLateralPosition += LateralInputSpeed * Time.deltaTime;
-        }
-        
-        // Проверка зажатия клавиш D или правой стрелки (инвертировано - едет влево)
-        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
-        {
-            _targetLateralPosition -= LateralInputSpeed * Time.deltaTime;
-        }
-        
-        // Ограничиваем целевую позицию диапазоном [-1, 1]
-        _targetLateralPosition = Mathf.Clamp(_targetLateralPosition, -1f, 1f);
-    }
-
-    private void UpdateLateralPosition()
-    {
-        // Плавная интерполяция текущей позиции к целевой
-        _currentLateralPosition = Mathf.Lerp(
-            _currentLateralPosition,
-            _targetLateralPosition,
-            LateralMoveSpeed * Time.deltaTime
-        );
-
-        // Обновляем позицию ChunkManager по X
-        Vector3 newPosition = transform.position;
-        newPosition.x = _currentLateralPosition;
-        transform.position = newPosition;
     }
 }
