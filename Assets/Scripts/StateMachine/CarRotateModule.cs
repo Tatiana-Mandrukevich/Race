@@ -10,6 +10,8 @@ public class CarRotateModule
     private const float Speed = 8f;
     
     private float _targetRotationAngle = 0f;
+    
+    public float TargetRotationAngle => _targetRotationAngle;
         
     public CarRotateModule(InputSystem inputSystem, Transform car, ChunkMover chunkMover)
     {
@@ -60,17 +62,15 @@ public class CarRotateModule
         }
     }
 
-    // Метод для проверки, находится ли машина в крайнем левом положении
+    // Проверяем, находится ли текущая позиция на минимальной границе (с небольшой погрешностью)
     private bool IsCarPulledToLeft()
     {
-        // Проверяем, находится ли текущая позиция на минимальной границе (с небольшой погрешностью)
         return _chunkMover.CurrentLateralPosition <= _chunkMover.MinPosition + 0.1f;
     }
 
-    // Метод для проверки, находится ли машина в крайнем правом положении
+    // Проверяем, находится ли текущая позиция на максимальной границе (с небольшой погрешностью)
     private bool IsCarPulledToRight()
     {
-        // Проверяем, находится ли текущая позиция на максимальной границе (с небольшой погрешностью)
         return _chunkMover.CurrentLateralPosition >= _chunkMover.MaxPosition - 0.1f;
     }
 }

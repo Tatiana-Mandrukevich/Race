@@ -139,12 +139,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad75762669f5498bbe00621d98834f58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsMove: 0
   wheels:
   - {fileID: 1355314661}
   - {fileID: 924368703}
   - {fileID: 1274161578}
   - {fileID: 1576688013}
+  FrontWheels:
+  - {fileID: 1355314661}
+  - {fileID: 924368703}
   _chunkManager: {fileID: 1165854378}
 --- !u!1 &705507993
 GameObject:
