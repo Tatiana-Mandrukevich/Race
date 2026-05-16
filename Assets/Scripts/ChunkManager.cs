@@ -18,6 +18,9 @@ public class ChunkManager : MonoBehaviour
 
     private List<GameObject> _lastChunks = new List<GameObject>();
     private List<Transform> _activeChunks = new List<Transform>();
+    public float CurrentSpeed => _speedManager.GetCurrentSpeed();
+    public ISpeedManager SpeedManager => _speedManager;
+    public bool IsMove => _inputSystem.IsUpArrowButtonClicked;
     
     private ISpeedManager _speedManager;
     private IChunkSpawner _spawner;

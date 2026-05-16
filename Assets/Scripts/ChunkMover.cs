@@ -3,14 +3,11 @@ using UnityEngine;
 
 public class ChunkMover : IChunkMover
 {
+    private float _minPosition = -1f;
+    private float _maxPosition = 1f;
+    
     private InputSystem _inputSystem;
     private Transform _chunkManagerTransform;
-
-    public ChunkMover(Transform chunkManagerTransform, InputSystem inputSystem)
-    {
-        _chunkManagerTransform = chunkManagerTransform;
-        _inputSystem = inputSystem;
-    }
     
     // Input System параметры
     public float LateralMoveSpeed = 5f; // Скорость плавного движения по X
@@ -19,6 +16,16 @@ public class ChunkMover : IChunkMover
     // Переменные для движения по X
     private float _targetLateralPosition = 0f; // Целевая позиция по X (-1, 0, 1)
     private float _currentLateralPosition = 0f; // Текущая позиция по X
+    
+    public float CurrentLateralPosition => _currentLateralPosition;
+    public float MinPosition => _minPosition;
+    public float MaxPosition => _maxPosition;
+    
+    public ChunkMover(Transform chunkManagerTransform, InputSystem inputSystem)
+    {
+        _chunkManagerTransform = chunkManagerTransform;
+        _inputSystem = inputSystem;
+    }
     
     public void MoveForward(List<Transform> chunks, float speed)
     {
@@ -45,7 +52,7 @@ public class ChunkMover : IChunkMover
         }
         
         // Ограничиваем целевую позицию диапазоном [-1, 1]
-        _targetLateralPosition = Mathf.Clamp(_targetLateralPosition, -1f, 1f);
+        _targetLateralPosition = Mathf.Clamp(_targetLateralPosition, _minPosition, _maxPosition);
     }
 
     public void UpdateLateralPosition()
