@@ -308,6 +308,69 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 23, y: 0, z: 0}
+--- !u!1 &1000655058
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1000655060}
+  - component: {fileID: 1000655059}
+  m_Layer: 0
+  m_Name: SceneContext
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1000655059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000655058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89715ad69b973a14899afa2c6730b30b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _scriptableObjectInstallers: []
+  _monoInstallers: []
+  _installerPrefabs: []
+  _autoRun: 1
+  OnPreInstall:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPostInstall:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPreResolve:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPostResolve:
+    m_PersistentCalls:
+      m_Calls: []
+  _parentNewObjectsUnderSceneContext: 0
+  _contractNames: []
+  _parentContractNames: []
+--- !u!4 &1000655060
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000655058}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1165854377
 GameObject:
   m_ObjectHideFlags: 0
@@ -349,14 +412,17 @@ MonoBehaviour:
   - {fileID: 7853759757521767765, guid: 6857424e1708c4ff49d9d35690b29610, type: 3}
   - {fileID: 7342540502358205544, guid: cbf3465fece164e9095b42c90570b20f, type: 3}
   - {fileID: 4225203840637267063, guid: ca36dc36c660d43a1ae79c3cabea97a9, type: 3}
+  - {fileID: 8718629230703445421, guid: 4134aa6e81f8b4c4bb31ce47be53fe93, type: 3}
+  - {fileID: 1417000313017864821, guid: 8565cc8e29f3345ba8afd324fba342f3, type: 3}
+  - {fileID: 4315028156918593696, guid: 52ec562c2705b437db199f51116bc36c, type: 3}
+  - {fileID: 9030135975444311564, guid: 72f024eb6a51d40cda68f9e6c93ecec7, type: 3}
+  - {fileID: 3215138014310472127, guid: 07f4f637e6e804bf59c1dafa75e50332, type: 3}
   InitialBlockCount: 16
   BlockLenght: 10
   StartMoveSpeed: 10
   MaxSpeed: 30
   SpeedIncreasePerSecond: 0.4
   recycleDistanceBehindCamera: 15
-  LateralMoveSpeed: 5
-  LateralInputSpeed: 2
 --- !u!4 &1165854379
 Transform:
   m_ObjectHideFlags: 0
@@ -379,3 +445,4 @@ SceneRoots:
   - {fileID: 963194228}
   - {fileID: 705507995}
   - {fileID: 1165854379}
+  - {fileID: 1000655060}
