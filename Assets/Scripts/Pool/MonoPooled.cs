@@ -10,7 +10,7 @@ public class MonoPooled : MonoBehaviour, IPooledObject
         _pool.Push(this);
     }
 
-    public void Initialize()
+    public virtual void Initialize()
     {
         gameObject.SetActive(true);
     }
