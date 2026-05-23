@@ -36,7 +36,26 @@ public class ChunkManager : MonoBehaviour
         _mover = new ChunkMover(transform, _inputSystem);
         _recycler = new ChunkRecycler();
         
+        SetupCameraFollow();
         SpawnInitialChunks();
+    }
+
+    private void SetupCameraFollow()
+    {
+        if (CameraTransform != null && CameraTransform.GetComponent<CameraFollow>() == null)
+        {
+            CameraFollow follow = CameraTransform.gameObject.AddComponent<CameraFollow>();
+            // Ищем машину в сцене
+            Car car = FindObjectOfType<Car>();
+            if (car != null)
+            {
+                follow.carTransform = car.transform;
+                // Настраиваем смещение исходя из текущей разницы позиций, 
+                // если машина и камера уже расставлены в сцене
+                follow.offset = CameraTransform.position - car.transform.position;
+                follow.fixedY = CameraTransform.position.y;
+            }
+        }
     }
 
     private void Update()
