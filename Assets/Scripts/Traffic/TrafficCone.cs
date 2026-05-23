@@ -54,7 +54,7 @@ public class TrafficCone : MonoBehaviour, IPooledObject
         if (_isHit) return;
         if (other == null) return;
         
-        if (!other.CompareTag("Car")) return;
+        if (!other.CompareTag("MyCar")) return;
 
         _isHit = true;
         

@@ -38,7 +38,7 @@ public class StateMachine
     }
 
     private int IsTransitionsCondition()
-    {
+    { 
         List<ITransitionState> currentList = CurrentState.Transitions;
         for (int i = 0; i < currentList.Count; i++)
         {

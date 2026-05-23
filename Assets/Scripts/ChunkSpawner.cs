@@ -10,6 +10,7 @@ namespace DefaultNamespace
         private readonly List<GameObject> _lastChunks;
         private readonly Transform _parent;
         private readonly Dictionary<GameObject, Pool<Chunk>> _pools;
+        private int amountSpawnedChunks;
 
         public ChunkSpawner(List<GameObject> chunks, List<GameObject> lastChunks, Transform parent)
         {
@@ -31,10 +32,19 @@ namespace DefaultNamespace
             Vector3 spawnPosition = new Vector3(_parent.position.x, _parent.position.y, zPosition);
             GameObject prefab = GetChunk();
             Chunk newChunk = _pools[prefab].Pull();
+            
+            amountSpawnedChunks++;
+            switch (amountSpawnedChunks)
+            {
+                case < 10: newChunk.GetComponent<Chunk>().ChunkSpawned(Random.Range(0, 1)); break;
+                case > 50: newChunk.GetComponent<Chunk>().ChunkSpawned(1); break;
+            }
+            
             if (_lastChunks.Count >= 2)
             {
                 _lastChunks.Remove(_lastChunks[0]);
             }
+            
             _lastChunks.Add(prefab);
             newChunk.transform.position = spawnPosition;
             newChunk.transform.SetParent(_parent);

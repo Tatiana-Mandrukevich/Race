@@ -4,7 +4,7 @@ public class MonoPooled : MonoBehaviour, IPooledObject
 {
     private IPool _pool;
 
-    public void ReturnToPool()
+    public virtual void ReturnToPool()
     {
         gameObject.SetActive(false);
         _pool.Push(this);

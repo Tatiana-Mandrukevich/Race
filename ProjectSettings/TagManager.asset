@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Car
   - TrafficCone
+  - MyCar
   layers:
   - Default
   - TransparentFX
