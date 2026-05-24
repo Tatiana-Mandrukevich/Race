@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Zenject;
 
@@ -13,6 +14,7 @@ public class ChunkManager : MonoBehaviour
     public float StartMoveSpeed = 10;
     public float MaxSpeed = 30f;
     public float SpeedIncreasePerSecond = 0.4f;
+    private float speedMultiplier;
 
     public float recycleDistanceBehindCamera = 15;
 
@@ -20,7 +22,13 @@ public class ChunkManager : MonoBehaviour
     private List<Transform> _activeChunks = new List<Transform>();
     public float CurrentSpeed => _speedManager.GetCurrentSpeed();
     public ISpeedManager SpeedManager => _speedManager;
-    public bool IsMove => _inputSystem.IsUpArrowButtonClicked;
+    public bool IsMove => _inputSystem.IsUpArrowButtonClicked || IsFlying();
+
+    private bool IsFlying()
+    {
+        var buffSystem = FindObjectOfType<BuffSystem>();
+        return buffSystem != null && buffSystem.IsFlying;
+    }
     
     private ISpeedManager _speedManager;
     private IChunkSpawner _spawner;
@@ -31,7 +39,7 @@ public class ChunkManager : MonoBehaviour
     private void Awake()
     {
         // Создаем зависимости
-        _speedManager = new SpeedManager(StartMoveSpeed, MaxSpeed, SpeedIncreasePerSecond);
+        _speedManager = new SpeedManager(StartMoveSpeed, MaxSpeed, SpeedIncreasePerSecond, speedMultiplier);
         _spawner = new DefaultNamespace.ChunkSpawner(Chunks, _lastChunks, transform);
         _mover = new ChunkMover(transform, _inputSystem);
         _recycler = new ChunkRecycler();
@@ -77,5 +85,21 @@ public class ChunkManager : MonoBehaviour
             _activeChunks.Add(spawnedChunk);
             nextSpawnPositionZ += BlockLenght;
         }
+    }
+    
+    private void MoveBlocks(float moveSpeed)
+    {
+        float moveDistance = moveSpeed * Time.deltaTime;
+        moveDistance += moveDistance * speedMultiplier;
+        Vector3 moveOffset = new Vector3(0, 0, -moveDistance);
+        foreach (var activeChunk in _activeChunks)
+        {
+            activeChunk.transform.position += moveOffset;
+        }
+    }
+    
+    public MonoPooled GetLastChunk()
+    {
+        return _activeChunks.Last().GetComponent<MonoPooled>();
     }
 }

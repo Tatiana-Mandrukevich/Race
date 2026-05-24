@@ -1,18 +1,20 @@
 using UnityEngine;
 
-public class SpeedManager : ISpeedManager
+public class SpeedManager : ISpeedManager, ISpeedForBuff, IMultiplierSpeedForBuff
 {
     private float _currentSpeed;
     private readonly float _startSpeed;
     private readonly float _maxSpeed;
     private readonly float _increaseRate;
     private bool _isMove;
+    private float speedMultiplier;
 
-    public SpeedManager(float startSpeed, float maxSpeed, float increaseRate)
+    public SpeedManager(float startSpeed, float maxSpeed, float increaseRate, float speedMultiplier)
     {
         _startSpeed = startSpeed;
         _maxSpeed = maxSpeed;
         _increaseRate = increaseRate;
+        this.speedMultiplier = speedMultiplier;
     }
 
     public float GetCurrentSpeed()
@@ -50,5 +52,35 @@ public class SpeedManager : ISpeedManager
     public void SetIsMove(bool isMove)
     {
         _isMove = isMove;
+    }
+    
+    public void ReduceSpeedAfterCrush()
+    {
+        _currentSpeed *= 0.7f;
+        if (_currentSpeed < _startSpeed)
+        {
+            Debug.Log("Lose");
+        }
+    }
+    
+    public void AddSpeed(float speed)
+    {
+        _currentSpeed += speed;
+    }
+
+    public void RemoveSpeed(float speed)
+    {
+        _currentSpeed -= speed;
+        if (_currentSpeed < _startSpeed) _currentSpeed = _startSpeed;
+    }
+
+    public void AddSpeedMultiplier(float speedMultiplier)
+    {
+        this.speedMultiplier += speedMultiplier;
+    }
+
+    public void RemoveSpeedMultiplier(float speedMultiplier)
+    {
+        this.speedMultiplier -= speedMultiplier;
     }
 }

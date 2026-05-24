@@ -48,6 +48,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1388185878401849794, guid: bde657e22ede64f2798b347db281866c, type: 3}
+      propertyPath: spawnObjects.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1388185878401849794, guid: bde657e22ede64f2798b347db281866c, type: 3}
+      propertyPath: spawnObjects.Array.data[4]
+      value: 
+      objectReference: {fileID: 6059656253461116989, guid: aba160fdd486f40219c9dbdcf2d935f3, type: 3}
     - target: {fileID: 7916704874835781996, guid: bde657e22ede64f2798b347db281866c, type: 3}
       propertyPath: m_Name
       value: Chunk_8

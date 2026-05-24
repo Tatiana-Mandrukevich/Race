@@ -11,14 +11,22 @@ public class Car : MonoBehaviour
     private StateMachine _stateMachine;
     private WheelCarModule _wheelModule;
     private CarRotateModule _carRotateModule;
+    private CarCrushState _crushState;
     private ChunkMover _chunkMover;
     private WheelRotateModule _wheelRotateModule;
     
     [Inject] private InputSystem _inputSystem;
 
+    public ChunkMover ChunkMover => _chunkMover;
+
     private void Start()
     {
         InitializeStateMachine();
+    }
+    
+    public void Crush()
+    {
+        _stateMachine.SetState(_crushState);
     }
 
     private void InitializeStateMachine()
@@ -32,6 +40,11 @@ public class Car : MonoBehaviour
         
         idleState.AddTransition(new StateTransition(runState, new FuncCondition(() => _chunkManager.IsMove)));
         runState.AddTransition(new StateTransition(idleState, new FuncCondition(() => !_chunkManager.IsMove)));
+
+        _crushState = new CarCrushState(_wheelModule, _carRotateModule, _chunkManager.SpeedManager, transform);
+        _crushState.AddTransition(new StateTransition(runState, new FuncCondition(() => _crushState.IsFinish && _chunkManager.IsMove)));
+        _crushState.AddTransition(new StateTransition(idleState, new FuncCondition(() => _crushState.IsFinish && !_chunkManager.IsMove)));
+
         _stateMachine = new StateMachine(idleState);
     }
 

@@ -18,7 +18,7 @@ public class CameraFollow : MonoBehaviour
         if (carTransform == null)
         {
             // Поиск машины по тегу
-            GameObject carObj = GameObject.FindGameObjectWithTag("Car");
+            GameObject carObj = GameObject.FindGameObjectWithTag("MyCar");
             carTransform = carObj.transform;
         }
 

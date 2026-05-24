@@ -1,5 +1,7 @@
+using System;
 using UnityEngine;
 using DG.Tweening;
+using Random = UnityEngine.Random;
 
 public class TrafficCone : MonoBehaviour, IPooledObject
 {
@@ -54,7 +56,7 @@ public class TrafficCone : MonoBehaviour, IPooledObject
         if (_isHit) return;
         if (other == null) return;
         
-        if (!other.CompareTag("Car")) return;
+        if (!other.CompareTag("MyCar")) return;
 
         _isHit = true;
         
@@ -136,7 +138,9 @@ public class TrafficCone : MonoBehaviour, IPooledObject
         transform.localRotation = _initialRotation;
         transform.localScale = _initialScale;
     }
-    
+
+    public Action ReturnToPoolEvent { get; set; }
+
     public void ReturnToPool()
     {
         if (transform.parent != _initialParent)
