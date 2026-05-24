@@ -4,7 +4,7 @@ public class FlyBuffTrigger : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.tag == "MyCar")
         {
             Destroy(gameObject);
             FindObjectOfType<BuffSystem>().AddFlyBuff();

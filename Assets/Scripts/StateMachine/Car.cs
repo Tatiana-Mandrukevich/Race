@@ -17,6 +17,8 @@ public class Car : MonoBehaviour
     
     [Inject] private InputSystem _inputSystem;
 
+    public ChunkMover ChunkMover => _chunkMover;
+
     private void Start()
     {
         InitializeStateMachine();

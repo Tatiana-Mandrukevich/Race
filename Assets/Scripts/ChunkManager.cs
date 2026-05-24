@@ -22,7 +22,13 @@ public class ChunkManager : MonoBehaviour
     private List<Transform> _activeChunks = new List<Transform>();
     public float CurrentSpeed => _speedManager.GetCurrentSpeed();
     public ISpeedManager SpeedManager => _speedManager;
-    public bool IsMove => _inputSystem.IsUpArrowButtonClicked;
+    public bool IsMove => _inputSystem.IsUpArrowButtonClicked || IsFlying();
+
+    private bool IsFlying()
+    {
+        var buffSystem = FindObjectOfType<BuffSystem>();
+        return buffSystem != null && buffSystem.IsFlying;
+    }
     
     private ISpeedManager _speedManager;
     private IChunkSpawner _spawner;
@@ -92,8 +98,8 @@ public class ChunkManager : MonoBehaviour
         }
     }
     
-    public Transform GetLastChunk()
+    public MonoPooled GetLastChunk()
     {
-        return _activeChunks.Last();
+        return _activeChunks.Last().GetComponent<MonoPooled>();
     }
 }

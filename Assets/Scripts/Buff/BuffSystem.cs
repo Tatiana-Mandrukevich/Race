@@ -8,6 +8,7 @@ public class BuffSystem : MonoBehaviour
     public CarTrigger CarTrigger;
     public SpeedManager SpeedManager;
     public CoinFlySpawner FlySpawner;
+    public bool IsFlying { get; private set; }
 
     private List<IBuff> _buffs = new List<IBuff>();
 
@@ -28,13 +29,48 @@ public class BuffSystem : MonoBehaviour
 
     public void RemoveBuff(IBuff buff)
     {
+        if (buff is FlyBuff)
+        {
+            IsFlying = false;
+        }
         buff.EndBuff();
         _buffs.Remove(buff);
     }
 
     public void AddFlyBuff()
     {
-        AddBuff(new FlyBuff(SpeedManager, CarTrigger.transform, FlySpawner, Camera.main.transform));
+        if (CarTrigger == null)
+        {
+            CarTrigger = FindObjectOfType<CarTrigger>();
+        }
+
+        if (SpeedManager == null)
+        {
+            SpeedManager = FindObjectOfType<ChunkManager>()?.SpeedManager as SpeedManager;
+        }
+
+        if (FlySpawner == null)
+        {
+            FlySpawner = FindObjectOfType<CoinFlySpawner>();
+        }
+        
+        IsFlying = true;
+        if (CarTrigger != null && CarTrigger.Car != null)
+        {
+            AddBuff(new FlyBuff(SpeedManager, CarTrigger.Car.transform, FlySpawner, Camera.main.transform));
+        }
+        else
+        {
+            Car car = FindObjectOfType<Car>();
+            if (car != null)
+            {
+                AddBuff(new FlyBuff(SpeedManager, car.transform, FlySpawner, Camera.main.transform));
+            }
+            else
+            {
+                Debug.LogError("Car not found for FlyBuff!");
+            }
+        }
     }
 
     public void AddSpeedBuff()

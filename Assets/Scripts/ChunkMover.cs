@@ -55,6 +55,12 @@ public class ChunkMover : IChunkMover
         _targetLateralPosition = Mathf.Clamp(_targetLateralPosition, _minPosition, _maxPosition);
     }
 
+    public void SetLateralLimits(float min, float max)
+    {
+        _minPosition = min;
+        _maxPosition = max;
+    }
+
     public void UpdateLateralPosition()
     {
         // Плавная интерполяция текущей позиции к целевой
