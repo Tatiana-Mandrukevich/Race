@@ -1,3 +1,4 @@
+using DefaultNamespace.Buff;
 using Zenject;
 
 namespace Installers
@@ -7,6 +8,7 @@ namespace Installers
         public override void InstallBindings()
         {
             Container.BindInterfacesAndSelfTo<InputSystem>().FromNew().AsSingle();
+            Container.BindInterfacesAndSelfTo<CoinController>().FromNew().AsSingle();
         }
     }
 }

@@ -68,11 +68,16 @@ public class ChunkManager : MonoBehaviour
 
     private void Update()
     {
+        _speedManager.SetIsMove(IsMove);
         float speed = _speedManager.GetCurrentSpeed();
-        _mover.MoveForward(_activeChunks, speed);
-        _recycler.RecycleChunks(_activeChunks, CameraTransform.position.z - recycleDistanceBehindCamera, BlockLenght, _spawner);
+
+        if (!_speedManager.IsLost)
+        {
+            _mover.MoveForward(_activeChunks, speed);
+            _mover.HandleLateralInput();
+        }
         
-        _mover.HandleLateralInput();
+        _recycler.RecycleChunks(_activeChunks, CameraTransform.position.z - recycleDistanceBehindCamera, BlockLenght, _spawner);
         _mover.UpdateLateralPosition();
     }
 
