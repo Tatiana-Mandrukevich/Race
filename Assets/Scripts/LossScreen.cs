@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using DefaultNamespace.Buff;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -41,13 +42,15 @@ public class LossScreen : MonoBehaviour
 
     private void OnMainMenuButtonClick()
     {
-        SceneManager.LoadScene("MainScreen");
+        DOTween.KillAll();
+        SceneManager.LoadScene(0);
         _coinController.ResetCoins();
     }
     
     private void OnRetryButtonClick()
     {
-        SceneManager.LoadScene("GameScene");
+        DOTween.KillAll();
+        SceneManager.LoadScene(1);
         _coinController.ResetCoins();
     }
 }
