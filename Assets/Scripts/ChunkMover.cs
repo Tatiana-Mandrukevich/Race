@@ -31,9 +31,9 @@ public class ChunkMover : IChunkMover
     {
         float moveDistance = speed * Time.deltaTime;
         Vector3 moveOffset = new Vector3(0, 0, -moveDistance);
-        foreach (var activeChunk in chunks)
+        for (int i = 0; i < chunks.Count; i++)
         {
-            activeChunk.transform.position += moveOffset;
+            chunks[i].position += moveOffset;
         }
     }
     

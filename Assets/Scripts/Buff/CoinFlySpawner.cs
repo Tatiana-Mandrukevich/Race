@@ -1,6 +1,8 @@
 using System.Linq;
+using DefaultNamespace.Buff;
 using DG.Tweening;
 using UnityEngine;
+using Zenject;
 
 public class CoinFlySpawner : MonoBehaviour
 {
@@ -8,6 +10,8 @@ public class CoinFlySpawner : MonoBehaviour
     public Transform[] spawnCoinPosition;
     public GameObject CoinPrefab;
     public float SpawnInterval = 0.5f;
+    
+    [Inject] private CoinController _coinController;
 
     private bool canSpawn = true;
 
@@ -51,10 +55,13 @@ public class CoinFlySpawner : MonoBehaviour
         Collider coinCollider = newCoin.GetComponentInChildren<Collider>();
         if (coinCollider != null)
         {
-            if (coinCollider.gameObject.GetComponent<Coin>() == null)
+            var coin = coinCollider.GetComponent<Coin>();
+            if (coin == null)
             {
-                coinCollider.gameObject.AddComponent<Coin>();
+                coin = coinCollider.gameObject.AddComponent<Coin>();
             }
+
+            coin.Initialize(_coinController);
         }
         
         ChunkManager.GetLastChunk();

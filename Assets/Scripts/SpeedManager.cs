@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class SpeedManager : ISpeedManager, ISpeedForBuff, IMultiplierSpeedForBuff
@@ -8,6 +9,10 @@ public class SpeedManager : ISpeedManager, ISpeedForBuff, IMultiplierSpeedForBuf
     private readonly float _increaseRate;
     private bool _isMove;
     private float speedMultiplier;
+
+    public static event Action<bool> OnLost;
+    private bool _isLost;
+    public bool IsLost => _isLost;
 
     public SpeedManager(float startSpeed, float maxSpeed, float increaseRate, float speedMultiplier)
     {
@@ -60,6 +65,12 @@ public class SpeedManager : ISpeedManager, ISpeedForBuff, IMultiplierSpeedForBuf
         if (_currentSpeed < _startSpeed)
         {
             Debug.Log("Lose");
+            _isLost = true;
+            OnLost?.Invoke(true);
+        }
+        else
+        {
+            OnLost?.Invoke(false);
         }
     }
     
