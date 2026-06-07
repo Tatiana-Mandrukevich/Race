@@ -45,7 +45,7 @@ Shader "Custom/URP/Curve"
                 float3 worldPos = TransformObjectToWorld(IN.positionOS.xyz);
                 float3 capPos = _WorldSpaceCameraPos;
                 float ZDist = worldPos.z - capPos.z;
-                worldPos.x = ZDist * ZDist * _Curvature;
+                worldPos.x -= ZDist * ZDist * _Curvature;
                 OUT.positionCS = TransformWorldToHClip(worldPos);
                 OUT.uv = TRANSFORM_TEX(IN.uv, _BaseMap);
                 return OUT;
@@ -53,7 +53,7 @@ Shader "Custom/URP/Curve"
             
             half4 Frag(Varyings IN) : SV_Target
             {
-                half tex = SAMPLE_TEXTURE2D(_BaseMap, sampler_BaseMap, IN.uv);
+                half4 tex = SAMPLE_TEXTURE2D(_BaseMap, sampler_BaseMap, IN.uv);
                 return tex * _BaseColor;
             }
             ENDHLSL
