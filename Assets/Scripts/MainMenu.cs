@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
 
 public class MainMenu : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class MainMenu : MonoBehaviour
 
     private void OnPlayButtonClick()
     {
-        SceneManager.LoadScene("GameScene");
+        DOTween.KillAll();
+        SceneManager.LoadScene(1);
     }
 }
