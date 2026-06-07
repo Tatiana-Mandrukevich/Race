@@ -42,6 +42,12 @@ public class FlyBuff : IBuff
 
         _camera.transform.DOLocalMoveY(_camera.transform.localPosition.y + 10, 1f).SetId("FlyBuffTween");
         _car.transform.DOLocalMoveY(_car.transform.localPosition.y + 10, 1f).SetId("FlyBuffTween");
+        
+        if (FlyVolumeChanger.Instance != null)
+        {
+            FlyVolumeChanger.Instance.StartFlyEffect(1f);
+        }
+        
         _multiplierSpeedForBuff.AddSpeedMultiplier(SpeedMultiplier);
 
         var cameraFollow = _camera.GetComponent<CameraFollow>();
@@ -69,6 +75,12 @@ public class FlyBuff : IBuff
                 _carRb.isKinematic = _initialKinematic;
             }
         });
+
+        if (FlyVolumeChanger.Instance != null)
+        {
+            FlyVolumeChanger.Instance.StopFlyEffect(1f);
+        }
+
         _multiplierSpeedForBuff.RemoveSpeedMultiplier(SpeedMultiplier);
     }
 
