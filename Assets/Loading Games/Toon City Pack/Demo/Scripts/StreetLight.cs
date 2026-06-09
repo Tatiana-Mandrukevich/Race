@@ -15,7 +15,7 @@ public class StreetLight : MonoBehaviour {
         this.isOn = isOn;
 
         MeshRenderer mr = GetComponent<MeshRenderer>();
-        Shader shader = Shader.Find(isOn ? "Unlit/Color" : "Universal Render Pipeline/Lit");
+        Shader shader = Shader.Find(isOn ? "Unlit/Color" : "Custom/URP/Curve");
         mr.materials[1].color = lights[0].color;
         mr.materials[1].shader = shader;
 
