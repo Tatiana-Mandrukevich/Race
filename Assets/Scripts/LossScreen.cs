@@ -14,6 +14,9 @@ public class LossScreen : MonoBehaviour
     [SerializeField] private TMP_Text _coinsNumber;
     [SerializeField] private Button _mainMenuButton;
     [SerializeField] private Button _retryButton;
+    [SerializeField] private Button _secondLifeButton;
+    
+    public static event Action<bool> OnSecondLifeChoice;
     
     [Inject] private CoinController _coinController;
 
@@ -26,12 +29,14 @@ public class LossScreen : MonoBehaviour
     {
         _mainMenuButton.onClick.AddListener(OnMainMenuButtonClick);
         _retryButton.onClick.AddListener(OnRetryButtonClick);
+        _secondLifeButton.onClick.AddListener(OnSecondLifeButtonClick);
     }
     
     private void OnDisable()
     {
         _mainMenuButton.onClick.RemoveListener(OnMainMenuButtonClick);
         _retryButton.onClick.RemoveListener(OnRetryButtonClick);
+        _secondLifeButton.onClick.RemoveListener(OnSecondLifeButtonClick);
     }
 
     private void ShowActualTotalCoins()
@@ -52,5 +57,10 @@ public class LossScreen : MonoBehaviour
         DOTween.KillAll();
         SceneManager.LoadScene(1);
         _coinController.ResetCoins();
+    }
+    
+    private void OnSecondLifeButtonClick()
+    {
+        OnSecondLifeChoice?.Invoke(true);
     }
 }

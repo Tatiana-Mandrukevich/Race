@@ -2356,9 +2356,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c6e973b598854762a98ab2c0f430d9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _coinsNumber: {fileID: 0}
+  _coinsNumber: {fileID: 1436759392}
   _mainMenuButton: {fileID: 947469157}
   _retryButton: {fileID: 969179692}
+  _secondLifeButton: {fileID: 1755144302}
 --- !u!1001 &1572353053
 PrefabInstance:
   m_ObjectHideFlags: 0
