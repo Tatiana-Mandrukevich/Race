@@ -1,12 +1,15 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 public class UIController : MonoBehaviour
 {
     [SerializeField] private CoinStatisticsUI _coinStatisticsUI;
     [SerializeField] private LossScreen _lossScreen;
+    
+    public YandexGameService YandexGameService;
 
     private void Start()
     {
