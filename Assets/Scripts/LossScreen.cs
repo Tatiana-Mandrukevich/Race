@@ -15,12 +15,13 @@ public class LossScreen : MonoBehaviour
     [SerializeField] private Button _mainMenuButton;
     [SerializeField] private Button _retryButton;
     [SerializeField] private Button _secondLifeButton;
+    [SerializeField] private YandexGameService YandexGameService;
     
     public static event Action<bool> OnSecondLifeChoice;
     
     [Inject] private CoinController _coinController;
 
-    private void Start()
+    private void Start() 
     {
         ShowActualTotalCoins();
     }
@@ -54,13 +55,20 @@ public class LossScreen : MonoBehaviour
     
     private void OnRetryButtonClick()
     {
-        DOTween.KillAll();
-        SceneManager.LoadScene(1);
-        _coinController.ResetCoins();
+        _retryButton.interactable = false;
+        _mainMenuButton.interactable = false;
+        _secondLifeButton.interactable = false;
+        
+        YandexGameService.TryPlayInterstitial(() =>
+        {
+            DOTween.KillAll();
+            SceneManager.LoadScene(1);
+            _coinController.ResetCoins();
+        });
     }
     
     private void OnSecondLifeButtonClick()
     {
-        OnSecondLifeChoice?.Invoke(true);
+        YandexGameService.ShowReward("SecondLife");
     }
 }

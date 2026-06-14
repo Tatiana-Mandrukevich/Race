@@ -54,7 +54,7 @@ public class YandexGameService : MonoBehaviour
         YG2.RewardedAdvShow(rewardID);
     }
 
-    public void TryPlayInterstitial()
+    public void TryPlayInterstitial(Action onComplete = null)
     {
         if (isCanInterstitial && YG2.isTimerAdvCompleted)
         {
@@ -62,7 +62,7 @@ public class YandexGameService : MonoBehaviour
             timerCanvasGroup.DOFade(1, 0.5f).OnComplete(() =>
             {
                 var sequence = DOTween.Sequence();
-                for (int i = 2; i == 0; i--)
+                for (int i = 4; i >= 0; i--)
                 {
                     sequence.AppendInterval(1f);
                     var i1 = i;
@@ -73,9 +73,14 @@ public class YandexGameService : MonoBehaviour
                 {
                     timerCanvasGroup.alpha = 0;
                     YG2.InterstitialAdvShow();
+                    onComplete?.Invoke();
                 });
             });
             InterstitialLock();
+        }
+        else
+        {
+            onComplete?.Invoke();
         }
     }
 

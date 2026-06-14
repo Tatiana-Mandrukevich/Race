@@ -8,8 +8,7 @@ public class UIController : MonoBehaviour
 {
     [SerializeField] private CoinStatisticsUI _coinStatisticsUI;
     [SerializeField] private LossScreen _lossScreen;
-    
-    public YandexGameService YandexGameService;
+    [SerializeField] private YandexGameService YandexGameService;
 
     private void Start()
     {
@@ -21,12 +20,22 @@ public class UIController : MonoBehaviour
     {
         SpeedManager.OnLost += OnSpeedManagerIsLost;
         LossScreen.OnSecondLifeChoice += OnSecondLifeChoice;
+        YandexGameService.OnRewardAdv += OnRewardAdv;
     }
 
     private void OnDisable()
     {
         SpeedManager.OnLost -= OnSpeedManagerIsLost;
         LossScreen.OnSecondLifeChoice -= OnSecondLifeChoice;
+        YandexGameService.OnRewardAdv -= OnRewardAdv;
+    }
+
+    private void OnRewardAdv(string rewardID)
+    {
+        if (rewardID == "SecondLife")
+        {
+            OnSecondLifeChoice(true);
+        }
     }
 
     private void OnSpeedManagerIsLost(bool isLost)
