@@ -72,9 +72,4 @@ public class BuffSystem : MonoBehaviour
             }
         }
     }
-
-    public void AddSpeedBuff()
-    {
-        
-    }
 }

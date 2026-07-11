@@ -1048,7 +1048,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CarTrigger: {fileID: 216886090}
-  FlySpawner: {fileID: 0}
+  FlySpawner: {fileID: 1911285480}
 --- !u!4 &867409506
 Transform:
   m_ObjectHideFlags: 0
