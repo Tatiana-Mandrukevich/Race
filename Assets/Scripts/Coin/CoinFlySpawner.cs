@@ -1,5 +1,4 @@
 using System.Linq;
-using DefaultNamespace.Buff;
 using DG.Tweening;
 using UnityEngine;
 using Zenject;
@@ -20,19 +19,12 @@ public class CoinFlySpawner : MonoBehaviour
 
     public void SpawnCoin(float yPosition)
     {
-        if (canSpawn == false || CoinPrefab == null) return;
+        if (canSpawn == false) return;
 
         if (spawnCoinPosition == null || spawnCoinPosition.Length == 0)
         {
             // Попробуем найти дочерние объекты как позиции для спавна, если массив пуст
             spawnCoinPosition = GetComponentsInChildren<Transform>().Where(t => t != transform).ToArray();
-            if (spawnCoinPosition.Length == 0) return;
-        }
-
-        if (ChunkManager == null)
-        {
-            ChunkManager = FindObjectOfType<ChunkManager>();
-            if (ChunkManager == null) return;
         }
 
         if (cointInLine == 0)
@@ -50,19 +42,6 @@ public class CoinFlySpawner : MonoBehaviour
         
         GameObject newCoin = Instantiate(CoinPrefab, spawnPos, Quaternion.identity);
         newCoin.SetActive(true);
-        
-        // Добавляем скрипт Coin на объект с коллайдером
-        Collider coinCollider = newCoin.GetComponentInChildren<Collider>();
-        if (coinCollider != null)
-        {
-            var coin = coinCollider.GetComponent<Coin>();
-            if (coin == null)
-            {
-                coin = coinCollider.gameObject.AddComponent<Coin>();
-            }
-
-            coin.Initialize(_coinController);
-        }
         
         ChunkManager.GetLastChunk();
         MonoPooled lastChunk = ChunkManager.GetLastChunk();

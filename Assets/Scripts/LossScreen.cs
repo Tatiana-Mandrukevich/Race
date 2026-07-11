@@ -1,7 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using DefaultNamespace.Buff;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;

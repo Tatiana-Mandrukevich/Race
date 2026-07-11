@@ -132,7 +132,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1951857409969628764, guid: b4a4a1682bbb542ba9de12b94f0e4273, type: 3}
       propertyPath: m_Name
-      value: Coin (2)
+      value: SpawnPosition3
       objectReference: {fileID: 0}
     - target: {fileID: 1951857409969628764, guid: b4a4a1682bbb542ba9de12b94f0e4273, type: 3}
       propertyPath: m_IsActive
@@ -307,6 +307,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   volume: {fileID: 481441522}
+--- !u!114 &216886094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 216886082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1daaadfce1914ed38fa74c321791dfa0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &416921954
 GameObject:
   m_ObjectHideFlags: 0
@@ -474,8 +486,8 @@ GameObject:
   m_Component:
   - component: {fileID: 457207872}
   - component: {fileID: 457207875}
-  - component: {fileID: 457207874}
   - component: {fileID: 457207873}
+  - component: {fileID: 457207876}
   m_Layer: 5
   m_Name: CoinStatistic
   m_TagString: Untagged
@@ -534,7 +546,15 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &457207874
+--- !u!222 &457207875
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 457207871}
+  m_CullTransparentMesh: 1
+--- !u!114 &457207876
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -547,14 +567,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _coinsNumber: {fileID: 1308132442}
---- !u!222 &457207875
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 457207871}
-  m_CullTransparentMesh: 1
 --- !u!1 &481441521
 GameObject:
   m_ObjectHideFlags: 0
@@ -933,7 +945,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80bc4f8d1043d4215b7c6a5f87ad6a07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _coinStatisticsUI: {fileID: 457207874}
+  _coinStatisticsUI: {fileID: 457207876}
   _lossScreen: {fileID: 1527473710}
   YandexGameService: {fileID: 901940642}
 --- !u!1001 &772266107
@@ -946,7 +958,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1951857409969628764, guid: b4a4a1682bbb542ba9de12b94f0e4273, type: 3}
       propertyPath: m_Name
-      value: Coin (1)
+      value: SpawnPosition2
       objectReference: {fileID: 0}
     - target: {fileID: 1951857409969628764, guid: b4a4a1682bbb542ba9de12b94f0e4273, type: 3}
       propertyPath: m_IsActive
@@ -1036,7 +1048,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CarTrigger: {fileID: 216886090}
-  FlySpawner: {fileID: 1911285478}
+  FlySpawner: {fileID: 0}
 --- !u!4 &867409506
 Transform:
   m_ObjectHideFlags: 0
@@ -1150,6 +1162,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1248598967819147742, guid: c4cad50aa03bbca42938fe318344950b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 216886092}
+    - targetCorrespondingSourceObject: {fileID: 1248598967819147742, guid: c4cad50aa03bbca42938fe318344950b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 216886094}
   m_SourcePrefab: {fileID: 100100000, guid: c4cad50aa03bbca42938fe318344950b, type: 3}
 --- !u!1 &901940641
 GameObject:
@@ -1974,7 +1989,7 @@ MonoBehaviour:
   - {fileID: 4315028156918593696, guid: 52ec562c2705b437db199f51116bc36c, type: 3}
   - {fileID: 9030135975444311564, guid: 72f024eb6a51d40cda68f9e6c93ecec7, type: 3}
   - {fileID: 3215138014310472127, guid: 07f4f637e6e804bf59c1dafa75e50332, type: 3}
-  InitialBlockCount: 16
+  InitialBlockCount: 30
   BlockLenght: 10
   StartMoveSpeed: 10
   MaxSpeed: 30
@@ -2553,6 +2568,7 @@ GameObject:
   - component: {fileID: 1527473709}
   - component: {fileID: 1527473708}
   - component: {fileID: 1527473710}
+  - component: {fileID: 1527473711}
   m_Layer: 5
   m_Name: LossScreen
   m_TagString: Untagged
@@ -2635,6 +2651,19 @@ MonoBehaviour:
   _retryButton: {fileID: 969179692}
   _secondLifeButton: {fileID: 1755144302}
   YandexGameService: {fileID: 901940642}
+--- !u!114 &1527473711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1527473706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c498cfea1f34642993cfaa1dc953d69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _coinsNumber: {fileID: 1436759392}
 --- !u!1001 &1572353053
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2645,7 +2674,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1951857409969628764, guid: b4a4a1682bbb542ba9de12b94f0e4273, type: 3}
       propertyPath: m_Name
-      value: Coin
+      value: SpawnPosition1
       objectReference: {fileID: 0}
     - target: {fileID: 1951857409969628764, guid: b4a4a1682bbb542ba9de12b94f0e4273, type: 3}
       propertyPath: m_IsActive
@@ -2761,7 +2790,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c498cfea1f34642993cfaa1dc953d69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _coinsNumber: {fileID: 1436759392}
+  _coinsNumber: {fileID: 0}
 --- !u!114 &1680322463
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3198,7 +3227,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1911285479}
-  - component: {fileID: 1911285478}
+  - component: {fileID: 1911285480}
   m_Layer: 0
   m_Name: FlyCoinSpawner
   m_TagString: Untagged
@@ -3206,25 +3235,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1911285478
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1911285477}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93a8bfa07e424fcfb7239c5628e39e5e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ChunkManager: {fileID: 1165854378}
-  spawnCoinPosition:
-  - {fileID: 1572353055}
-  - {fileID: 772266108}
-  - {fileID: 178286282}
-  CoinPrefab: {fileID: 1951857409969628764, guid: b4a4a1682bbb542ba9de12b94f0e4273, type: 3}
-  SpawnInterval: 0.2
 --- !u!4 &1911285479
 Transform:
   m_ObjectHideFlags: 0
@@ -3243,6 +3253,25 @@ Transform:
   - {fileID: 178286282}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1911285480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1911285477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efca1bf82fd434ef6b5a268164be63de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ChunkManager: {fileID: 1165854378}
+  spawnCoinPosition:
+  - {fileID: 1572353055}
+  - {fileID: 772266108}
+  - {fileID: 178286282}
+  CoinPrefab: {fileID: 1951857409969628764, guid: b4a4a1682bbb542ba9de12b94f0e4273, type: 3}
+  SpawnInterval: 0.5
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
