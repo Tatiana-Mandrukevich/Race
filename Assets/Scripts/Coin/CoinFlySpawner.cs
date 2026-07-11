@@ -8,7 +8,7 @@ public class CoinFlySpawner : MonoBehaviour
     public ChunkManager ChunkManager;
     public Transform[] spawnCoinPosition;
     public GameObject CoinPrefab;
-    public float SpawnInterval = 0.5f;
+    private float SpawnInterval = 0.2f;
     
     [Inject] private CoinController _coinController;
 

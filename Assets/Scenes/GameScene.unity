@@ -3271,7 +3271,6 @@ MonoBehaviour:
   - {fileID: 772266108}
   - {fileID: 178286282}
   CoinPrefab: {fileID: 1951857409969628764, guid: b4a4a1682bbb542ba9de12b94f0e4273, type: 3}
-  SpawnInterval: 0.5
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

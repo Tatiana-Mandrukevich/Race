@@ -127,7 +127,7 @@ public class TrafficCone : MonoBehaviour, IPooledObject
         if (_rb != null)
         {
             _rb.isKinematic = true;
-            _rb.velocity = Vector3.zero;
+            _rb.linearVelocity = Vector3.zero;
             _rb.angularVelocity = Vector3.zero;
         }
         if (_collider != null) _collider.enabled = true;
