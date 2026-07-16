@@ -16,6 +16,14 @@ public class ChunkRecycler : IChunkRecycler
             activeChunks.Remove(recycleChunk);
             float frontBlockZPosition = activeChunks.Count == 0 ? recycleChunk.position.z : GetFrontPositionZ(activeChunks);
             float nextBlockZPosition = frontBlockZPosition + blockLength;
+            
+            // Сначала принудительно возвращаем деревья в пул, пока чанк еще на месте
+            var forestGen = recycleChunk.GetComponent<ChunkForestGenerator>();
+            if (forestGen != null)
+            {
+                forestGen.CleanUpForest();
+            }
+            
             // Вместо Destroy вернуть в пул
             recycleChunk.GetComponent<IPooledObject>().ReturnToPool();
             Transform newBlock = spawner.SpawnChunk(nextBlockZPosition);

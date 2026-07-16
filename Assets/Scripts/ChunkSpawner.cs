@@ -54,6 +54,13 @@ namespace DefaultNamespace
             _lastChunks.Add(prefab);
             newChunk.transform.position = spawnPosition;
             newChunk.transform.SetParent(_parent);
+            
+            var forestGen = newChunk.GetComponent<ChunkForestGenerator>();
+            if (forestGen != null)
+            {
+                forestGen.GenerateForest(); // Лес спавнится строго на финальной позиции чанка
+            }
+            
             return newChunk.transform;
         }
 
