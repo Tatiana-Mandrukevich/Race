@@ -8,14 +8,13 @@ public class CoinFlySpawner : MonoBehaviour
     public ChunkManager ChunkManager;
     public Transform[] spawnCoinPosition;
     public GameObject CoinPrefab;
-    private float SpawnInterval = 0.2f;
     
     [Inject] private CoinController _coinController;
 
+    private float SpawnInterval = 0.2f;
     private bool canSpawn = true;
-
     private int spawnLineId;
-    private int cointInLine;
+    private int coinInLine;
 
     public void SpawnCoin(float yPosition)
     {
@@ -27,10 +26,10 @@ public class CoinFlySpawner : MonoBehaviour
             spawnCoinPosition = GetComponentsInChildren<Transform>().Where(t => t != transform).ToArray();
         }
 
-        if (cointInLine == 0)
+        if (coinInLine == 0)
         {
             spawnLineId = Random.Range(0, spawnCoinPosition.Length);
-            cointInLine = Random.Range(20, 30);
+            coinInLine = Random.Range(20, 30);
         }
 
         canSpawn = false;
@@ -52,6 +51,6 @@ public class CoinFlySpawner : MonoBehaviour
         }
         
         Destroy(newCoin.gameObject, 5);
-        cointInLine--;
+        coinInLine--;
     }
 }
