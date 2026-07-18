@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using DG.Tweening;
+using Zenject;
 using Random = UnityEngine.Random;
 
 public class TrafficCone : MonoBehaviour, IPooledObject
@@ -66,6 +67,9 @@ public class TrafficCone : MonoBehaviour, IPooledObject
         }
 
         if (hitParticles != null) hitParticles.Play();
+        
+        AudioManager.Instance.PlayConeHit();
+        
         if (hitSfx != null && _audioSource != null) _audioSource.PlayOneShot(hitSfx);
 
         // Направление отбрасывания — назад относительно машины
@@ -127,7 +131,7 @@ public class TrafficCone : MonoBehaviour, IPooledObject
         if (_rb != null)
         {
             _rb.isKinematic = true;
-            _rb.velocity = Vector3.zero;
+            _rb.linearVelocity = Vector3.zero;
             _rb.angularVelocity = Vector3.zero;
         }
         if (_collider != null) _collider.enabled = true;

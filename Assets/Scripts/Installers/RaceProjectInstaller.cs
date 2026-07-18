@@ -1,4 +1,3 @@
-using DefaultNamespace.Buff;
 using Zenject;
 
 namespace Installers

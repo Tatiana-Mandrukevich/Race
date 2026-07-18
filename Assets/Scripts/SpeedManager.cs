@@ -73,6 +73,13 @@ public class SpeedManager : ISpeedManager, ISpeedForBuff, IMultiplierSpeedForBuf
             OnLost?.Invoke(false);
         }
     }
+
+    public void ResetIsLost()
+    {
+        _isLost = false;
+        _currentSpeed = _startSpeed;
+        OnLost?.Invoke(false);
+    }
     
     public void AddSpeed(float speed)
     {

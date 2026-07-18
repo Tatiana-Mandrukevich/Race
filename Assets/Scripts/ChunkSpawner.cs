@@ -32,12 +32,18 @@ namespace DefaultNamespace
             Vector3 spawnPosition = new Vector3(_parent.position.x, _parent.position.y, zPosition);
             GameObject prefab = GetChunk();
             Chunk newChunk = _pools[prefab].Pull();
+            int randomAmountCarsToSpawn = Random.Range(0, 2);
+            int randomAmountCoinsToSpawn = Random.Range(0, 3);
             
             amountSpawnedChunks++;
             switch (amountSpawnedChunks)
             {
-                case < 10: newChunk.GetComponent<Chunk>().ChunkSpawned(Random.Range(0, 1)); break;
-                case > 50: newChunk.GetComponent<Chunk>().ChunkSpawned(1); break;
+                case < 20: newChunk.GetComponent<Chunk>().ObjectsOnChunkSpawned(0, 1); 
+                    break;
+                case > 20: newChunk.GetComponent<Chunk>().ObjectsOnChunkSpawned(
+                    randomAmountCarsToSpawn, 
+                    randomAmountCoinsToSpawn); 
+                    break;
             }
             
             if (_lastChunks.Count >= 2)
@@ -48,6 +54,13 @@ namespace DefaultNamespace
             _lastChunks.Add(prefab);
             newChunk.transform.position = spawnPosition;
             newChunk.transform.SetParent(_parent);
+            
+            var forestGen = newChunk.GetComponent<ChunkForestGenerator>();
+            if (forestGen != null)
+            {
+                forestGen.GenerateForest(); // Лес спавнится строго на финальной позиции чанка
+            }
+            
             return newChunk.transform;
         }
 

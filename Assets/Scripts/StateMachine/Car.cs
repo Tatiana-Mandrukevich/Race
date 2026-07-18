@@ -16,6 +16,7 @@ public class Car : MonoBehaviour
     private WheelRotateModule _wheelRotateModule;
     
     [Inject] private InputSystem _inputSystem;
+    [Inject] private AudioManager _audioManager;
 
     public ChunkMover ChunkMover => _chunkMover;
 
@@ -35,7 +36,7 @@ public class Car : MonoBehaviour
         _wheelModule = new WheelCarModule(_chunkManager, wheels);
         _carRotateModule = new CarRotateModule(_inputSystem, transform, _chunkMover);
         _wheelRotateModule = new WheelRotateModule(_carRotateModule, FrontWheels);
-        State idleState = new IdleStateForCar(transform);
+        State idleState = new IdleStateForCar(transform, _audioManager);
         State runState = new RunStateForCar(_wheelModule, _chunkManager.SpeedManager, _carRotateModule, transform);
         
         idleState.AddTransition(new StateTransition(runState, new FuncCondition(() => _chunkManager.IsMove)));

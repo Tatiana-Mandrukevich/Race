@@ -5,6 +5,8 @@ public class CarTrigger : MonoBehaviour, IInvisibleForBuff
 {
     private ISpeedManager _speedManager;
     public Car Car;
+    
+    [Inject] private AudioManager _audioManager;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -20,6 +22,8 @@ public class CarTrigger : MonoBehaviour, IInvisibleForBuff
             }
 
             _speedManager.ReduceSpeedAfterCrush();
+            
+            _audioManager.PlayCarCrash();
         }
     }
 

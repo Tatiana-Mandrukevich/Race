@@ -2,15 +2,18 @@ using System;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
+using Zenject;
 
 public class BuffSystem : MonoBehaviour
 {
     public CarTrigger CarTrigger;
-    public SpeedManager SpeedManager;
     public CoinFlySpawner FlySpawner;
     public bool IsFlying { get; private set; }
 
+    private SpeedManager SpeedManager;
     private List<IBuff> _buffs = new List<IBuff>();
+    
+    [Inject] private AudioManager _audioManager;
 
     private void Update()
     {
@@ -57,24 +60,19 @@ public class BuffSystem : MonoBehaviour
         IsFlying = true;
         if (CarTrigger != null && CarTrigger.Car != null)
         {
-            AddBuff(new FlyBuff(SpeedManager, CarTrigger.Car.transform, FlySpawner, Camera.main.transform));
+            AddBuff(new FlyBuff(SpeedManager, CarTrigger.Car.transform, FlySpawner, Camera.main.transform, _audioManager));
         }
         else
         {
             Car car = FindObjectOfType<Car>();
             if (car != null)
             {
-                AddBuff(new FlyBuff(SpeedManager, car.transform, FlySpawner, Camera.main.transform));
+                AddBuff(new FlyBuff(SpeedManager, car.transform, FlySpawner, Camera.main.transform, _audioManager));
             }
             else
             {
                 Debug.LogError("Car not found for FlyBuff!");
             }
         }
-    }
-
-    public void AddSpeedBuff()
-    {
-        
     }
 }
