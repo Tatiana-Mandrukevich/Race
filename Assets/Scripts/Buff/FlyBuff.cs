@@ -11,17 +11,23 @@ public class FlyBuff : IBuff
     private ChunkMover _chunkMover;
     private bool _initialKinematic;
     private float _currentTime;
+    private AudioManager _audioManager;
     public int Duration => 10;
 
     private const float SpeedMultiplier = 0.3f;
     private const float StopSpawnBeforeEnd = 1f;
 
-    public FlyBuff(IMultiplierSpeedForBuff multiplierSpeedForBuff, Transform car, CoinFlySpawner coinFlySpawner, Transform camera)
+    public FlyBuff(IMultiplierSpeedForBuff multiplierSpeedForBuff, 
+        Transform car, 
+        CoinFlySpawner coinFlySpawner, 
+        Transform camera,
+        AudioManager audioManager)
     {
         _multiplierSpeedForBuff = multiplierSpeedForBuff;
         _car = car;
         _coinFlySpawner = coinFlySpawner;
         _camera = camera;
+        _audioManager = audioManager;
         _currentTime = 0;
         
         var carComponent = _car.GetComponent<Car>();
@@ -39,6 +45,8 @@ public class FlyBuff : IBuff
             _initialKinematic = _carRb.isKinematic;
             _carRb.isKinematic = true;
         }
+        
+        _audioManager.PlayCarFly();
 
         _camera.transform.DOLocalMoveY(_camera.transform.localPosition.y + 10, 1f).SetId("FlyBuffTween");
         _car.transform.DOLocalMoveY(_car.transform.localPosition.y + 10, 1f).SetId("FlyBuffTween");

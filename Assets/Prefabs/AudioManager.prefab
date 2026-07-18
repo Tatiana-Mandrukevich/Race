@@ -49,7 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AudioManager
   backgroundMusic: {fileID: 8300000, guid: 01ae5cd96e0b140ada203e17e536fa1b, type: 3}
   coinCollectSound: {fileID: 8300000, guid: 3f6365ee6446e4a04a6f064fdea014ee, type: 3}
-  carFlySound: {fileID: 8300000, guid: 5352ece6993b749259ef3870ecfd6fd7, type: 3}
+  carFlySound: {fileID: 8300000, guid: e71ebde7badd74a9a93a13516b0ebb33, type: 3}
   carIdleSound: {fileID: 8300000, guid: a3f7c314915504041adf4ee25f5486b9, type: 3}
   carCrashSound: {fileID: 8300000, guid: d6651f9869d3c4c91b76404ec62bc052, type: 3}
   sfxSource: {fileID: 3672012880780315340}
