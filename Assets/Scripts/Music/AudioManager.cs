@@ -2,17 +2,30 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
+    // Статическая ссылка для быстрого доступа из пулов
+    public static AudioManager Instance { get; private set; }
+    
     [Header("Аудиофайлы (Audio Clips)")]
     [SerializeField] private AudioClip backgroundMusic; // Музыка главного меню и игры
     [SerializeField] private AudioClip coinCollectSound;
     [SerializeField] private AudioClip carFlySound;
     [SerializeField] private AudioClip carIdleSound;
     [SerializeField] private AudioClip carCrashSound;
+    [SerializeField] private AudioClip coneHitSound;
 
     [Header("Источники звука (Audio Sources)")]
     [SerializeField] private AudioSource sfxSource;      
     [SerializeField] private AudioSource carLoopSource;  
     [SerializeField] private AudioSource musicSource;    // Отдельный источник для фоновой музыки
+
+    private void Awake()
+    {
+        // Регистрируем синглтон
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+    }
 
     private void Start()
     {
@@ -47,4 +60,9 @@ public class AudioManager : MonoBehaviour
     }
 
     public void StopCarLoop() => carLoopSource.Stop();
+    
+    public void PlayConeHit()
+    {
+        sfxSource.PlayOneShot(coneHitSound, 0.65f); 
+    }
 }

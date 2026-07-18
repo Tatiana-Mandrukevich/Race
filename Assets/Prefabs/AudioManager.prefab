@@ -52,6 +52,7 @@ MonoBehaviour:
   carFlySound: {fileID: 8300000, guid: e71ebde7badd74a9a93a13516b0ebb33, type: 3}
   carIdleSound: {fileID: 8300000, guid: a3f7c314915504041adf4ee25f5486b9, type: 3}
   carCrashSound: {fileID: 8300000, guid: d6651f9869d3c4c91b76404ec62bc052, type: 3}
+  coneHitSound: {fileID: 8300000, guid: 5ec4b044c4e03481b8e0c20b372c82df, type: 3}
   sfxSource: {fileID: 3672012880780315340}
   carLoopSource: {fileID: 780258643962486357}
   musicSource: {fileID: 4761324850528556895}
