@@ -4,6 +4,7 @@ using Zenject;
 public class CoinCollector : MonoBehaviour
 {
     [Inject] private CoinController _coinController;
+    [Inject] private AudioManager _audioManager;
     
     private void OnTriggerEnter(Collider other)
     {
@@ -13,6 +14,7 @@ public class CoinCollector : MonoBehaviour
             coin.DoSmall(() => Destroy(other.gameObject));
 
             _coinController.AddCoin();
+            _audioManager.PlayCoinCollect();
         }
     }
 }
