@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 public class Pool<T> : IPool<T> where T : IPooledObject
 {
-    private List<T> _pooledObjects = new List<T>();
+    private List<T> _pooledObjects = new();
     private IFactory<T> _factory;
 
     public Pool(IFactory<T> factory)

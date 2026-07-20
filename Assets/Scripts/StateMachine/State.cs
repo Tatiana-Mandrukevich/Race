@@ -25,14 +25,6 @@ public class State
         Transitions.Add(transition);
     }
     
-    public void RemoveCondition(ITransitionState transition)
-    {
-        if (Transitions.Contains(transition))
-        {
-            Transitions.Remove(transition);
-        }
-    }
-    
     public void InitializeTransitions()
     {
         foreach (ITransitionState transition in Transitions)

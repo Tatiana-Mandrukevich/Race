@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class SpeedManager : ISpeedManager, ISpeedForBuff, IMultiplierSpeedForBuff
+public class SpeedManager : ISpeedManager, IMultiplierSpeedForBuff
 {
     private float _currentSpeed;
     private readonly float _startSpeed;

@@ -10,8 +10,8 @@ public class ChunkMover : IChunkMover
     private Transform _chunkManagerTransform;
     
     // Input System параметры
-    public float LateralMoveSpeed = 5f; // Скорость плавного движения по X
-    public float LateralInputSpeed = 2f; // Скорость изменения целевой позиции при зажатии клавиши
+    private float LateralMoveSpeed = 5f; // Скорость плавного движения по X
+    private float LateralInputSpeed = 2f; // Скорость изменения целевой позиции при зажатии клавиши
     
     // Переменные для движения по X
     private float _targetLateralPosition = 0f; // Целевая позиция по X (-1, 0, 1)

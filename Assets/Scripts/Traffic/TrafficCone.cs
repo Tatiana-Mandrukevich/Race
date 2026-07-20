@@ -1,19 +1,18 @@
 using System;
 using UnityEngine;
 using DG.Tweening;
-using Zenject;
 using Random = UnityEngine.Random;
 
 public class TrafficCone : MonoBehaviour, IPooledObject
 {
-    public float pushDistance = 4f;
-    public float jumpPower = 1.5f;
-    public float duration = 0.6f;
-    public bool usePhysicsAfter = true; // после анимации включить Rigidbody
-    public float enablePhysicsDelay = 0.05f;
-    public float despawnDelay = 2f; // время после отлета перед исчезновением
-    public ParticleSystem hitParticles;
-    public AudioClip hitSfx;
+    [SerializeField] private float pushDistance = 4f;
+    [SerializeField] private float jumpPower = 1.5f;
+    [SerializeField] private float duration = 0.6f;
+    [SerializeField] private bool usePhysicsAfter = true; // после анимации включить Rigidbody
+    [SerializeField] private float enablePhysicsDelay = 0.05f;
+    [SerializeField] private float despawnDelay = 2f; // время после отлета перед исчезновением
+    [SerializeField] private ParticleSystem hitParticles;
+    [SerializeField] private AudioClip hitSfx;
 
     private bool _isHit = false;
     private Collider _collider;

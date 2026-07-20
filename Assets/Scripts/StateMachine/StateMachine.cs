@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 public class StateMachine
 {
-    public State CurrentState { get; private set; }
+    private State CurrentState { get; set; }
 
     public StateMachine(State state)
     {

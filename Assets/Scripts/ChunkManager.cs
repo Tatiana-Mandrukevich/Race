@@ -5,21 +5,20 @@ using Zenject;
 
 public class ChunkManager : MonoBehaviour
 {
-    public Transform CameraTransform;
-    public List<GameObject> Chunks = new List<GameObject>();
+    public List<GameObject> Chunks = new();
+    
+    [SerializeField] private Transform CameraTransform;
+    [SerializeField] private int InitialBlockCount = 16;
+    [SerializeField] private float BlockLenght = 10;
+    [SerializeField] private float StartMoveSpeed = 10;
+    [SerializeField] private float MaxSpeed = 30f;
+    [SerializeField] private float SpeedIncreasePerSecond = 0.4f;
+    [SerializeField] private float recycleDistanceBehindCamera = 15;
 
-    public int InitialBlockCount = 16;
-    public float BlockLenght = 10;
-
-    public float StartMoveSpeed = 10;
-    public float MaxSpeed = 30f;
-    public float SpeedIncreasePerSecond = 0.4f;
     private float speedMultiplier;
-
-    public float recycleDistanceBehindCamera = 15;
-
-    private List<GameObject> _lastChunks = new List<GameObject>();
-    private List<Transform> _activeChunks = new List<Transform>();
+    private List<GameObject> _lastChunks = new();
+    private List<Transform> _activeChunks = new();
+    
     public float CurrentSpeed => _speedManager.GetCurrentSpeed();
     public ISpeedManager SpeedManager => _speedManager;
     public bool IsMove => _inputSystem.IsUpArrowButtonClicked || IsFlying();

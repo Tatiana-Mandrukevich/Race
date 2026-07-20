@@ -6,11 +6,11 @@ using YG;
 
 public class YandexGameService : MonoBehaviour
 {
-    public int IntersitionCooldown;
-    public int BannerTime;
-    public int BannerCooldown;
-    public TMP_Text timer;
-    public CanvasGroup timerCanvasGroup;
+    [SerializeField] private int IntersitionCooldown;
+    [SerializeField] private int BannerTime;
+    [SerializeField] private int BannerCooldown;
+    [SerializeField] private TMP_Text timer;
+    [SerializeField] private CanvasGroup timerCanvasGroup;
 
     private bool isCanInterstitial;
 

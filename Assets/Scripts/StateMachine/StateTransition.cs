@@ -5,8 +5,6 @@ public class StateTransition : ITransitionState
     public State StateTo { get; private set; }
     public StateCondition Condition { get; private set; }
     
-    public event Action OnTransitionDeInitialize;
-    
     public StateTransition(State stateTo, StateCondition condition)
     {
         StateTo = stateTo;

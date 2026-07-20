@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class ConeDespawner : MonoBehaviour
 {
-    public float despawnZoneDistance = 15f;
-    public float zoneHeight = 5f;
-    public float zoneWidth = 10f;
+    [SerializeField] private float despawnZoneDistance = 15f;
+    [SerializeField] private float zoneHeight = 5f;
+    [SerializeField] private float zoneWidth = 10f;
 
     private Collider despawnZone;
 

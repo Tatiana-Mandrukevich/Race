@@ -7,7 +7,7 @@ using UnityEngine.Rendering.Universal;
 
 public class CrushVolumeChanger : MonoBehaviour
 {
-    public Volume volume;
+    [SerializeField] private Volume volume;
     private Vignette vignette;
     
     public static CrushVolumeChanger Instance;

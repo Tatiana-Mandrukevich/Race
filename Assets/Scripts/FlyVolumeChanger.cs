@@ -7,7 +7,7 @@ using UnityEngine.Rendering.Universal;
 
 public class FlyVolumeChanger : MonoBehaviour
 {
-    public Volume volume;
+    [SerializeField] private Volume volume;
     private LensDistortion _lensDistortion;
     
     public static FlyVolumeChanger Instance;

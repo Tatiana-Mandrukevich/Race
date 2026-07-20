@@ -1,7 +1,7 @@
 using Zenject;
 using UnityEngine;
 
-public class CarTrigger : MonoBehaviour, IInvisibleForBuff
+public class CarTrigger : MonoBehaviour
 {
     private ISpeedManager _speedManager;
     public Car Car;
