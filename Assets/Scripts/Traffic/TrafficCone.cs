@@ -85,7 +85,8 @@ public class TrafficCone : MonoBehaviour, IPooledObject
         
         Sequence seq = DOTween.Sequence();
         seq.Append(transform.DOJump(targetPos, jumpPower, 1, duration).SetEase(Ease.OutQuad));
-        seq.Join(transform.DORotate(new Vector3(Random.Range(-20f, 20f), Random.Range(-90f, 90f), Random.Range(-20f, 20f)), duration, RotateMode.FastBeyond360).SetEase(Ease.OutQuad));
+        seq.Join(transform.DORotate(new Vector3(Random.Range(-20f, 20f), Random.Range(-90f, 90f), Random.Range(-20f, 20f)), 
+            duration, RotateMode.FastBeyond360).SetEase(Ease.OutQuad));
 
         CameraShakeDOTween.Instance?.Shake(0.18f, 0.25f);
 
